@@ -51,19 +51,34 @@ RSpec.describe Biker do
     end
 
     describe "#log_ride" do
-    it "can log a ride" do
-        expect(@biker1.rides).to eq({})
+        it "can log a ride knowing terrain type" do
+            expect(@biker1.rides).to eq({})
 
-        @biker1.log_ride(@ride1, 92.5)
-        expect(@biker1.rides).to eq ({@ride1 => 92.5})
+            @biker1.log_ride(@ride1, 92.5)
+            expect(@biker1.rides).to eq ({@ride1 => 92.5})
 
-        @biker1.log_ride(@ride1, 91.1)
-        expect(@biker1.rides).to eq ({@ride1 => 92.5, @ride1 => 91.1})
+            @biker1.log_ride(@ride1, 91.1)
+            expect(@biker1.rides).to eq ({@ride1 => 92.5, @ride1 => 91.1})
+            
+            @biker1.log_ride(@ride2, 60.9)
+            @biker1.log_ride(@ride2, 61.6)
+
+            expect(@biker1.rides).to eq ({@ride1 => 92.5, @ride1 => 91.1, @ride2 => 60.9, @ride2 => 61.6})
+        end
+
+        it "can log a ride not knowing terrain type" do
+            expect(@biker2.rides).to eq({})
+            @biker2.log_ride(@ride1, 97.0)
+            expect(@biker2.rides).to eq({})
+
+            @biker2.learn_terrain!(:gravel)
+            @biker2.learn_terrain!(:hills)
+            @biker2.log_ride(@ride1, 97.0)
+            @biker2.log_ride(@ride2, 65.0)
         
-        @biker1.log_ride(@ride2, 60.9)
-        @biker1.log_ride(@ride2, 61.6)
+            expect(@biker2.rides).to eq ({@ride2 => 65.0})
+        end
 
-        expect(@biker1.rides).to eq ({@ride1 => 92.5, @ride1 => 91.1, @ride2 => 60.9, @ride2 => 61.6})
     end
 
 end
