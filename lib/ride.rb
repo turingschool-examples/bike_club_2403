@@ -1,4 +1,3 @@
-
 class Ride
     attr_reader :name, 
                 :distance, 
@@ -14,11 +13,10 @@ class Ride
 
     def total_distance
         if @loop
-            actual_distance = distance
+            actual_distance = @distance
         else 
-            actual_distance = distance * 2 
+            actual_distance = @distance * 2 
         end
         actual_distance
     end
-
 end

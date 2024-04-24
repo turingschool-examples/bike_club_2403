@@ -1,3 +1,5 @@
+require "./lib/ride.rb"
+
 class Biker
     attr_reader :name, 
                 :max_distance,
@@ -17,9 +19,9 @@ class Biker
         end
     end
 
-    def log_ride
-        
+    def log_ride(ride, time)
+        if @acceptable_terrain.include?(ride.terrain) && ride.distance <= @max_distance
+            @rides[ride] = time
+        end
     end
-
-    
 end
