@@ -49,35 +49,24 @@ RSpec.describe Biker do
         end
 
     end
+
+    describe "#log_ride" do
+    it "can log a ride" do
+        expect(@biker1.rides).to eq({})
+
+        @biker1.log_ride(@ride1, 92.5)
+        expect(@biker1.rides).to eq ({@ride1 => 92.5})
+
+        @biker1.log_ride(@ride1, 91.1)
+        expect(@biker1.rides).to eq ({@ride1 => 92.5, @ride1 => 91.1})
+        
+        @biker1.log_ride(@ride2, 60.9)
+        @biker1.log_ride(@ride2, 61.6)
+
+        expect(@biker1.rides).to eq ({@ride1 => 92.5, @ride1 => 91.1, @ride2 => 60.9, @ride2 => 61.6})
+    end
+
 end
-
-
-
-
-
-#
-# pry(main)> biker.learn_terrain!(:gravel)
-
-# pry(main)> biker.learn_terrain!(:hills)
-
-# pry(main)> biker.acceptable_terrain
-# # => [:gravel, :hills]
-
-
-
-# pry(main)> biker.log_ride(ride1, 92.5)
-
-# pry(main)> biker.log_ride(ride1, 91.1)
-
-# pry(main)> biker.log_ride(ride2, 60.9)
-
-# pry(main)> biker.log_ride(ride2, 61.6)
-
-# pry(main)> biker.rides
-# # => {
-# #      #<Ride:0x00007fc62ca32a10...> => [92.5, 91.1],
-# #      #<Ride:0x00007fc62cb42ba8...> => [60.9, 61.6]
-# #    }
 
 # pry(main)> biker.personal_record(ride1)
 # => 91.1
