@@ -45,4 +45,11 @@ RSpec.describe BikeClub do
             expect(@bike_club.most_rides).to eq (@biker1)
         end
     end
+
+    describe "#best_time" do
+        it "determine which biker has the most rides in a bike club" do
+            expect(@bike_club.best_time(@ride1)).to eq (@biker1)
+        end
+    end
+
 end
