@@ -30,24 +30,32 @@ RSpec.describe Biker do
             expect(@biker1.acceptable_terrain).to eq([])
         end
     end
+
+    describe "#learn_terrain!" do
+        it "can learn new terrain types" do
+            expect(@biker1.acceptable_terrain).to eq([])
+
+            @biker1.learn_terrain!(:gravel)
+
+            expect(@biker1.acceptable_terrain).to eq([:gravel])
+
+            @biker1.learn_terrain!(:hills)
+
+            expect(@biker1.acceptable_terrain).to eq([:gravel, :hills])
+
+            @biker1.learn_terrain!(:gravel)
+
+            expect(@biker1.acceptable_terrain).to eq([:gravel])
+        end
+
+    end
 end
 
 
 
 
 
-# pry(main)> biker.name
-# # => "Kenny"
-
-# pry(main)> biker.max_distance
-# # => 30
-
-# pry(main)> biker.rides
-# # => {}
-
-# pry(main)> biker.acceptable_terrain
-# # => []
-
+#
 # pry(main)> biker.learn_terrain!(:gravel)
 
 # pry(main)> biker.learn_terrain!(:hills)
