@@ -68,4 +68,23 @@ describe 'Biker' do
         end
     end
 
+    describe '#perosonal_record' do
+        it 'can return the personal record' do
+            biker1.learn_terrain(:gravel)
+            biker1.learn_terrain(:hills)
+
+            biker1.log_ride(ride1, 92.5)
+            biker1.log_ride(ride1, 91.1)
+            biker1.log_ride(ride2, 60.9)
+            biker1.log_ride(ride2, 61.6)
+
+            expect(biker1.personal_record(ride1)).to eq(91.1)
+            expect(biker1.personal_record(ride2)).to eq(60.9)
+        end
+
+        it 'returns false if no rides have been logged' do
+            expect(biker1.personal_record(ride1)).to eq(false)
+        end
+    end
+
 end

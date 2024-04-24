@@ -19,4 +19,11 @@ attr_reader :name, :max_distance, :rides, :acceptable_terrains
         @rides[ride] ||= []
         @rides[ride] << time
     end
+
+    def personal_record(ride)
+        times = @rides[ride]
+        return false unless times
+
+        times.min
+    end
 end
