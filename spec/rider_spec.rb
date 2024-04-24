@@ -51,5 +51,21 @@ describe 'Biker' do
                 ride2 => [60.9, 61.6]
         })
         end
+
+        it 'does not log a ride if the terrain is not acceptable' do
+            biker1.learn_terrain(:gravel)
+            biker1.log_ride(ride1, 92.5)
+
+            expect(biker1.rides).to eq({})
+        end
+
+        it 'does not log a ride if the distance is too long' do
+            biker3 = Biker.new("Kenny", 10)
+            biker3.learn_terrain(:hills)
+            biker3.log_ride(ride1, 92.5)
+
+            expect(biker3.rides).to eq({})
+        end
     end
+
 end
