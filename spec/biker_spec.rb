@@ -66,7 +66,7 @@ RSpec.describe Biker do
             expect(@biker1.rides).to eq ({@ride1 => 92.5, @ride1 => 91.1, @ride2 => 60.9, @ride2 => 61.6})
         end
 
-        it "can log a ride not knowing terrain type" do
+        it "can stop logging a ride without knowing terrain type" do
             expect(@biker2.rides).to eq({})
             @biker2.log_ride(@ride1, 97.0)
             expect(@biker2.rides).to eq({})
@@ -81,6 +81,15 @@ RSpec.describe Biker do
 
     end
 
+    describe "#personal_record" do
+        it "can return record for logged ride" do
+            expect(@biker2.personal_record(@ride2)).to eq(65.0)
+        end
+        
+        it "can return false for ride not logged" do
+            expect(@biker2.personal_record(@ride1)).to be false
+        end
+    end
 end
 
 # pry(main)> biker.personal_record(ride1)
