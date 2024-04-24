@@ -15,5 +15,12 @@ describe BikeClub do
             expect(club.bikers).to eq([])
         end
     end
-
+    
+    describe '#add_biker' do
+        it 'should add a biker to the club' do
+            biker1 = Biker.new('Chuck', 20)
+            club.add_biker(biker1)
+            expect(club.bikers).to eq([biker1])
+        end
+    end
 end
