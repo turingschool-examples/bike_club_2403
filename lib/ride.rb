@@ -2,21 +2,23 @@ class Ride
     attr_reader :name, 
                 :distance, 
                 :loop, 
-                :terrain
+                :terrain,
+                :total_distance
 
     def initialize(params)
         @name = params[:name]
         @distance = params[:distance]
         @loop = params[:loop]
         @terrain = params[:terrain]
+        @total_distance = total_distance
     end
 
     def total_distance
-        if @loop
-            actual_distance = @distance
-        else 
-            actual_distance = @distance * 2 
+        if !@loop
+            total = @distance + @distance
+        else
+            total = @distance
         end
-        actual_distance
+        total
     end
 end
