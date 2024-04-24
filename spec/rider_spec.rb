@@ -1,5 +1,6 @@
 require './lib/ride'
 require './lib/biker'
+require 'pry'
 
 describe 'Biker' do
     let(:ride1) {Ride.new({ name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills })}
@@ -17,6 +18,38 @@ describe 'Biker' do
             expect(biker2.rides).to eq({})
             expect(biker1.acceptable_terrains).to eq([])
             expect(biker2.acceptable_terrains).to eq([])
+        end
+    end
+
+    describe 'learn_terrain' do
+        it "adds the terrain to the biker's list of acceptable terrains" do
+            biker1.learn_terrain(:hills)
+            expect(biker1.acceptable_terrains).to eq([:hills])
+            biker1.learn_terrain(:gravel)
+            expect(biker1.acceptable_terrains).to eq([:hills, :gravel])
+        end
+
+        it "doesn't add the same terrain twice" do
+            biker1.learn_terrain(:hills)
+            biker1.learn_terrain(:hills)
+            expect(biker1.acceptable_terrains).to eq([:hills])
+        end
+    end
+
+    describe 'logging the ride' do
+        it 'can log a ride' do
+            biker1.learn_terrain(:gravel)
+            biker1.learn_terrain(:hills)
+
+            biker1.log_ride(ride1, 92.5)
+            biker1.log_ride(ride1, 91.1)
+            biker1.log_ride(ride2, 60.9)
+            biker1.log_ride(ride2, 61.6)
+
+            expect(biker1.rides).to eq({ 
+                ride1 => [92.5, 91.1],
+                ride2 => [60.9, 61.6]
+        })
         end
     end
 end
