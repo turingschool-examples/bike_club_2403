@@ -2,7 +2,7 @@ require './lib/ride'
 require './lib/biker'
 require 'pry'
 
-describe 'Biker' do
+describe Biker do
     let(:ride1) {Ride.new({ name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills })}
     let(:ride2) {Ride.new({ name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel })}
     let(:biker1) {Biker.new("Kenny", 30)}
