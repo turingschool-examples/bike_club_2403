@@ -21,6 +21,14 @@ RSpec.describe Biker do
         it "can initialize with a max distance" do
             expect(@biker1.max_distance).to eq(30)
         end
+
+        it "can initialize with a rides" do
+            expect(@biker1.rides).to eq({})
+        end
+
+        it "can initialize with a rides" do
+            expect(@biker1.acceptable_terrain).to eq([])
+        end
     end
 end
 
