@@ -19,5 +19,11 @@ describe Ride do
             expect(ride2.loop?).to eq(true)
         end
     end
-    
+
+    describe '#total_distance' do
+        it 'returns double the distance if it is not a loop' do
+            ride1 = Ride.new({name: 'Walnut Creek Trail', distance: 10.7, loop: false, terrain: :hills})
+            expect(ride1.total_distance).to eq(21.4)
+        end
+    end
 end
