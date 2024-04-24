@@ -25,5 +25,13 @@ class Biker
         end
     end
 
+    def personal_record(ride)
+        if @rides.include?(ride)
+            @rides.select {|logged_ride, _| logged_ride == ride }.values.max
+        else
+            return false
+        end
+    end
+
 
 end
