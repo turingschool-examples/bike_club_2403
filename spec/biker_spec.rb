@@ -45,7 +45,7 @@ RSpec.describe Biker do
 
             @biker1.learn_terrain!(:gravel)
 
-            expect(@biker1.acceptable_terrain).to eq([:gravel])
+            expect(@biker1.acceptable_terrain).to eq([:gravel, :hills])
         end
 
     end
