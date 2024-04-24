@@ -1,11 +1,12 @@
 class Biker
-attr_reader :name, :max_distance, :rides, :acceptable_terrains
+attr_reader :name, :max_distance, :rides, :acceptable_terrains, :total_rides
 
     def initialize(name, max_distance)
         @name = name
         @max_distance = max_distance
         @rides = {}
         @acceptable_terrains = []
+        @total_rides = 0
     end
 
     def learn_terrain(terrain)
@@ -18,6 +19,7 @@ attr_reader :name, :max_distance, :rides, :acceptable_terrains
 
         @rides[ride] ||= []
         @rides[ride] << time
+        @total_rides += 1
     end
 
     def personal_record(ride)

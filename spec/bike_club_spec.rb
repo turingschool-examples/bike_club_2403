@@ -23,4 +23,16 @@ describe BikeClub do
             expect(club.bikers).to eq([biker1])
         end
     end
+
+    describe '#most_rides' do
+        it 'should return the biker for the most rides in the club' do
+            biker1 = double('Biker', total_rides: 5)
+            biker2 = double('Biker', total_rides: 10)
+
+            club.add_biker(biker1)
+            club.add_biker(biker2)
+
+            expect(club.most_rides).to eq(biker2)
+        end
+    end
 end
