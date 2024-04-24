@@ -35,4 +35,23 @@ describe BikeClub do
             expect(club.most_rides).to eq(biker2)
         end
     end
+
+    describe 'best_time' do
+        it 'should return the best time for the ride passed in' do
+            ride1 = Ride.new({name: 'Walnut Creek Trail', distance: 10.7, loop: false, terrain: :hills})
+            biker1 = Biker.new('Chuck', 20)
+            biker2 = Biker.new('Chris', 15)
+
+            biker1.learn_terrain(:hills)
+            biker2.learn_terrain(:hills)
+
+            club.add_biker(biker1)
+            club.add_biker(biker2)
+
+            biker1.log_ride(ride1, 91.1)
+            biker2.log_ride(ride1, 90.1)
+
+            expect(club.best_time(ride1)).to eq(biker2)
+        end
+    end
 end

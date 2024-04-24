@@ -68,7 +68,7 @@ describe Biker do
         end
     end
 
-    describe '#perosonal_record' do
+    describe '#personal_record' do
         it 'can return the personal record' do
             biker1.learn_terrain(:gravel)
             biker1.learn_terrain(:hills)
