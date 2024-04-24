@@ -17,4 +17,16 @@ class BikeClub
     def most_rides
         @bikers.max_by {|biker| biker.rides.length}
     end
+
+    def best_time(ride)
+        times = {}
+
+        @bikers.each do |biker|
+            if biker.rides.include?(ride)
+                times.store(ride_time.store(biker.rides, biker.rides[ride]), biker)
+                times.values.max
+            end
+    
+        end
+    end
 end
